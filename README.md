@@ -1,24 +1,25 @@
 # CastleMiner Z World Builder
 
-An independent world-creation utility for the original Steam release of **CastleMiner Z 1.9.9.8**.
+An independent world-creation and inspection utility for the original Steam release of **CastleMiner Z 1.9.9.8**.
 
 **Publisher:** AnlionGamer  
-**Current release:** v1.0.4  
+**Current release:** v1.1.2  
 **Tool ID:** `cmz.worldbuilder`  
 **Package format:** `.cmztool` format 1
 
 ## What it does
 
-CastleMiner Z World Builder provides a dedicated interface for creating and managing CastleMiner Z worlds without embedding the tool into the Mod Manager itself.
+CastleMiner Z World Builder runs as its own utility rather than being compiled into CMZ Mod Manager.
 
-- Create standard CastleMiner Z worlds using native-compatible world metadata.
-- Generate worlds from trusted protocol-1 `.cmzscenario` packages.
-- Import direct `.cmzscenario` packages and supported archive wrappers.
-- Preserve normal CastleMiner Z world/save compatibility.
-- Detect Steam profiles and resolve the player persona name without requiring an existing world.
-- Keep World Builder settings, scenarios, and user data separate from the installed tool files.
-- Run as its own `CMZ.WorldBuilder.exe` process rather than inside `CMZModManager.exe`.
-- Provide 23 interface languages and the same official-tool visual design family used by CMZ Mod Manager.
+- Creates normal CastleMiner Z worlds using audited stock-compatible metadata while leaving terrain and player inventory creation to CastleMiner Z itself.
+- Imports and runs trusted protocol-1 `.cmzscenario` packages.
+- Lets each scenario define whether it uses legacy scenario-owned staging or the validated `official-cmz` Normal World foundation.
+- Inspects existing worlds without rewriting them.
+- Validates protected-save envelopes and selected-profile readability.
+- Reports persisted-world data scale, record sizes, coordinate coverage, and the initial persisted chunk-ID payload relevant to multiplayer joining.
+- Keeps multiplayer metrics factual; v1.1.2 does not invent a safe/unsafe threshold.
+- Preserves World Builder ToolData across updates.
+- Supports 23 interface languages and the CMZ official-tool visual design family.
 
 No custom scenarios are bundled with the World Builder release.
 
@@ -28,84 +29,118 @@ No custom scenarios are bundled with the World Builder release.
 - Windows
 - CMZ Mod Manager **1.1.2 or newer** for `.cmztool` installation
 
-World Builder is an external utility. It is **not** a runtime gameplay mod and does not use Harmony or the CMZ Mod Framework while generating worlds.
+World Builder is an external utility. It is **not** a runtime gameplay mod and does not use Harmony or CMZ Runtime while generating worlds.
 
 ## Installation
 
-1. Download `CMZ_World_Builder_v1.0.4.cmztool` from the GitHub Releases page.
+1. Download `CMZ_World_Builder_v1.1.2.cmztool` from GitHub Releases.
 2. Open **CMZ Mod Manager**.
 3. Open **Tools**.
 4. Select **Install Tool...**.
 5. Choose the downloaded `.cmztool`.
 6. Open **CastleMiner Z World Builder** from the Tools page.
 
-The `.cmztool` package contains the standalone World Builder executable and all resources required by the tool.
+Before creating or generating a world, fully close `CastleMinerZ.exe`.
 
-## Updating
+## Normal World creation
 
-Install the newer `.cmztool` through the Mod Manager. The Manager recognizes the same tool ID as an update and replaces the installed program files while preserving World Builder ToolData.
+The Normal World path mirrors the audited CastleMiner Z 1.9.9.8 world-creation metadata lifecycle as closely as an offline tool can while keeping CMZ authoritative for native terrain and mode/difficulty-specific inventory creation.
 
-World Builder can be updated independently of CMZ Mod Manager. A World Builder update does not require `CMZModManager.exe` to be rebuilt.
+Normal worlds use:
+
+- CMZ-compatible `world.info` v5 / terrain version 1;
+- the selected Steam profile for owner/creator;
+- stock-style `New World <local date/time>` naming;
+- the stock start position and initial metadata defaults;
+- no pre-generated terrain `.dat` files;
+- no fabricated player `.inv` file.
+
+Same-seed runtime comparison has verified matching surface terrain, trees, cave topology, and ore placement in tested areas. This is runtime evidence for the tested regions, not a claim of exhaustive block-for-block comparison of an effectively infinite world.
+
+## Custom scenarios
+
+World Builder supports trusted protocol-1 `.cmzscenario` packages. Scenario packages remain separate products and are not included in this repository or release.
+
+### Scenario-defined base generation
+
+v1.1.2 adds an optional scenario manifest declaration:
+
+```json
+"worldGeneration": {
+  "base": "official-cmz"
+}
+```
+
+A scenario may choose:
+
+- `scenario` — the existing scenario-owned staging behavior; this remains the default when the declaration is absent.
+- `official-cmz` — stage the validated Normal World foundation first, then let the scenario apply its own changes.
+
+The decision belongs to each scenario package. World Builder remains neutral and contains no scenario-specific world design logic.
+
+Only install scenario packages from sources you trust. Scenario generators are executable content by design.
+
+## World Inspection
+
+World Inspection is read-only with respect to the inspected world and provides:
+
+- `world.info` metadata summary;
+- persisted `.dat` and `.inv` counts;
+- coordinate bounds and X/Z coverage;
+- record size statistics and write-time range;
+- RTSD protected-save envelope/integrity validation;
+- selected-profile payload-read validation;
+- privacy-safe copy/export reports;
+- initial multiplayer persisted chunk-ID payload measurement: `4 + (persisted record count × 4)` bytes, excluding transport framing.
+
+The exported privacy-safe report omits local paths, Steam profile IDs, player/inventory identifiers, owner/creator names, server message, and server password.
 
 ## User data
 
-World Builder user data is stored separately from the installed program:
+World Builder data is stored separately from installed program files:
 
 ```text
 %LOCALAPPDATA%\CastleMinerZ\CMZModManager\ToolData\cmz.worldbuilder
 ```
 
-When the Mod Manager uses a custom data root, the corresponding `ToolData\cmz.worldbuilder` directory is used instead.
-
-Updating or reinstalling the tool preserves ToolData. Normal uninstall also preserves ToolData unless the user explicitly chooses to remove it.
-
-## Creating worlds
-
-Before creating or generating a world, fully close `CastleMinerZ.exe`.
-
-### Standard worlds
-
-The standard-world path creates native-compatible world metadata and leaves normal terrain generation to CastleMiner Z's own terrain initialization.
-
-### Custom scenarios
-
-World Builder supports trusted protocol-1 `.cmzscenario` packages. Scenario packages are separate from the World Builder itself and are not included in this repository or release.
-
-Scenario packages can define custom generation logic and options, so only install scenarios from sources you trust.
-
-## Themes and interface
-
-v1.0.4 standardizes the standalone tool around the official CMZ utility UI contract:
-
-- explicit themed Button and ComboBox templates;
-- readable accent text;
-- consistent input, card, and page sizing;
-- dark/light/material themes without Windows-native light-control leakage;
-- 23 supported interface languages.
+When CMZ Mod Manager uses a custom data root, the corresponding `ToolData\cmz.worldbuilder` directory is used instead. Updating/reinstalling preserves ToolData.
 
 ## Source
 
-The repository contains the v1.0.4 World Builder source and release resources used by the standalone tool. The private/release builder is intentionally not required for installing or using the published `.cmztool`.
+This repository contains the public World Builder source snapshot and supporting documentation for the current release. The private/release **builder is intentionally not included** in this repository.
 
-The `manifests/v1.0.4/tool.json` file is a reference copy of the manifest contained in the published v1.0.4 package.
+Reference manifests from published packages are stored under `manifests/`.
 
 ## Release integrity
 
-The v1.0.4 release SHA-256 is recorded in `SHA256SUMS.txt`.
+The SHA-256 for the current release is recorded in `SHA256SUMS.txt`.
 
 ```text
-BE8A64D80EB64C32E94E65E512EC701F5CFE1AB8217F91F04F8F0434B488353E  CMZ_World_Builder_v1.0.4.cmztool
+4529E7C4EE14EE473143E5A8963D648854B4DBF19484F06BFA442F2171365829  CMZ_World_Builder_v1.1.2.cmztool
 ```
 
-## Compatibility and testing
+## Release validation
 
-The package structure, payload hashes, language resources, themes, and compiled version identity have been independently checked against the v1.0.4 release artifact.
+The v1.1.2 artifact has been checked for:
 
-Automated/source validation is not a substitute for real CastleMiner Z runtime testing. Generated-world compatibility should ultimately be judged by successful creation, loading, saving, and gameplay in CastleMiner Z 1.9.9.8.
+- package ZIP integrity;
+- manifest/file SHA-256 agreement and no undeclared payload files;
+- path traversal hygiene;
+- expected tool/game/manager version identity;
+- 23-language key and format-placeholder parity;
+- valid theme/language JSON;
+- compiled v1.1.2 identity and publisher strings;
+- no bundled custom scenarios;
+- no hard-coded local user paths found in the compiled executable;
+- source-level absence of network/web client code;
+- scenario package path/hash validation and transactional staging behavior;
+- privacy-safe World Inspection report behavior.
+
+Windows build and real-game runtime testing remain the final authority. v1.1.2 has been built successfully on Windows and exercised with CastleMiner Z 1.9.9.8.
 
 ## License
 
-Original project source is released under the MIT License. CastleMiner Z names, trademarks, and any third-party game material remain the property of their respective owners.
+Original project source is released under the MIT License. CastleMiner Z names, trademarks, and third-party game material remain the property of their respective owners.
 
 ## Disclaimer
 

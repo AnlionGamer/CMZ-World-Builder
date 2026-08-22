@@ -200,9 +200,37 @@ namespace CMZWorldBuilder
             return seed;
         }
 
+        // CastleMiner Z creates a fresh System.Random for each normal new-world seed
+        // and immediately calls Next(). Keep this separate from generic/custom scenario
+        // seed handling so the stock Normal World path mirrors the game exactly.
+        public static int ParseOfficialNormalSeed(string text, out bool generated)
+        {
+            string value = (text ?? "").Trim();
+            if (value.Length == 0)
+            {
+                generated = true;
+                return new Random().Next();
+            }
+
+            generated = false;
+            int seed;
+            if (!int.TryParse(value, NumberStyles.None, CultureInfo.InvariantCulture, out seed) || seed < 0 || seed > 2147483646)
+                throw new FormatException("Seed must be blank or a whole number from 0 through 2,147,483,646.");
+            return seed;
+        }
+
         public static long DotNetTicks(DateTime value)
         {
             return value.Ticks;
+        }
+
+        // CastleMiner Z 1.9.9.8 WorldInfo.MakeNew(null, seed) uses the English
+        // Strings.New_World resource followed by DateTime.Now.ToString("g").
+        // Normal World generation intentionally mirrors that behavior instead of
+        // exposing a custom-name convenience that the game itself does not use.
+        public static string BuildOfficialNormalWorldName(DateTime localTime)
+        {
+            return "New World " + localTime.ToString("g", CultureInfo.CurrentCulture);
         }
 
         public static void ValidateProfileId(string profileId)
@@ -565,7 +593,130 @@ namespace CMZWorldBuilder
 
     public sealed class WorldCreationService
     {
+        // Custom/scenario staging path. This intentionally retains explicit metadata
+        // because custom scenarios are not the stock Normal World creation workflow.
         public StagedWorld Prepare(string profileId, string owner, string worldName, int seed)
+        {
+            return PrepareCore(profileId, owner, worldName, seed);
+        }
+
+        // Exact Normal World path for CastleMiner Z 1.9.9.8. The stock game creates
+        // the world with a null creator (which auto-names it), then TakeOwnership
+        // assigns creator/owner and regenerates WorldID before saving. Random/discarded
+        // GUIDs are deliberately consumed in the same conceptual order where practical.
+        public StagedWorld PrepareOfficialNormal(string profileId, string owner, int seed)
+        {
+            WorldFormat.ValidateProfileId(profileId);
+            owner = (owner ?? "").Trim();
+            if (owner.Length == 0)
+                throw new ArgumentException("The selected Steam profile does not have a resolvable player name. Open CastleMiner Z through Steam once, then refresh profiles.");
+            if (seed < 0 || seed > 2147483646) throw new ArgumentOutOfRangeException("seed");
+
+            // WorldInfo() creates a save path, and MakeNew() creates another one. The
+            // first path is discarded by the stock code. Consume the corresponding GUID
+            // so the implementation follows the same lifecycle without persisting it.
+            Guid.NewGuid();
+            Guid folderId = Guid.NewGuid();
+            string folderText = folderId.ToString().ToLowerInvariant();
+
+            DateTime nameTime = DateTime.Now;
+            string worldName = WorldFormat.BuildOfficialNormalWorldName(nameTime);
+            DateTime createdTime = DateTime.Now;
+
+            // MakeNew assigns an initial WorldID; WorldManager.TakeOwnership replaces it.
+            Guid.NewGuid();
+            Guid worldId = Guid.NewGuid();
+
+            WorldInfo info = new WorldInfo {
+                Version = WorldBuilderInfo.WorldInfoVersion,
+                TerrainVersion = WorldBuilderInfo.TerrainVersion,
+                Name = worldName,
+                OwnerGamerTag = owner,
+                CreatorGamerTag = owner,
+                CreatedTicks = WorldFormat.DotNetTicks(createdTime),
+                LastPlayedTicks = WorldFormat.DotNetTicks(createdTime),
+                Seed = seed,
+                WorldID = worldId,
+                LastX = 8.0f,
+                LastY = 128.0f,
+                LastZ = -8.0f,
+                InfiniteResource = false,
+                ServerMessage = owner + "'s Server",
+                ServerPassword = "",
+                HellBosses = 0,
+                MaxHellBosses = 0
+            };
+
+            string worldsRoot = Path.Combine(WorldProfileService.ResolveCastleMinerZRoot(), profileId, "Worlds");
+            Directory.CreateDirectory(worldsRoot);
+            string stage = Path.Combine(worldsRoot, ".cmzwb-stage-" + folderText);
+            string final = Path.Combine(worldsRoot, folderText);
+            if (Directory.Exists(stage) || Directory.Exists(final))
+                throw new IOException("A generated world folder already exists. No files were overwritten.");
+
+            Directory.CreateDirectory(stage);
+            try
+            {
+                byte[] raw = WorldFormat.SerializeWorldInfo(info);
+                byte[] protectedBytes = WorldFormat.ProtectSave(raw, profileId);
+                string infoPath = Path.Combine(stage, "world.info");
+                File.WriteAllBytes(infoPath, protectedBytes);
+                WorldFormat.ValidateWorldInfoFile(infoPath, profileId, info);
+
+                if (Directory.GetFiles(stage, "*.dat", SearchOption.TopDirectoryOnly).Length != 0)
+                    throw new InvalidDataException("Normal World creation unexpectedly pre-generated terrain data. Stock CMZ leaves terrain generation to the game on load.");
+                if (Directory.GetFiles(stage, "*.inv", SearchOption.TopDirectoryOnly).Length != 0)
+                    throw new InvalidDataException("Normal World creation unexpectedly pre-generated player inventory. Stock CMZ creates mode-specific player inventory after the world session begins.");
+            }
+            catch
+            {
+                try { Directory.Delete(stage, true); } catch { }
+                throw;
+            }
+
+            return new StagedWorld {
+                ProfileID = profileId,
+                Owner = owner,
+                WorldName = worldName,
+                Seed = seed,
+                WorldID = worldId,
+                FolderID = folderId,
+                StagePath = stage,
+                FinalPath = final,
+                CreatedAt = createdTime,
+                Info = info
+            };
+        }
+
+        // Scenario packages may request an official CMZ Normal World foundation while
+        // still presenting a scenario-specific world name. Build the official-normal
+        // baseline first, then treat the custom name as the scenario's first metadata
+        // change. Terrain generation remains entirely game-owned from the same seed.
+        public StagedWorld PrepareOfficialNormalForScenario(string profileId, string owner, string worldName, int seed)
+        {
+            worldName = (worldName ?? "").Trim();
+            if (worldName.Length == 0) throw new ArgumentException("World name is required.");
+            if (worldName.Length > 128) throw new ArgumentException("World name must be 128 characters or fewer.");
+
+            StagedWorld stage = PrepareOfficialNormal(profileId, owner, seed);
+            try
+            {
+                stage.Info.Name = worldName;
+                stage.WorldName = worldName;
+                string infoPath = Path.Combine(stage.StagePath, "world.info");
+                byte[] raw = WorldFormat.SerializeWorldInfo(stage.Info);
+                File.WriteAllBytes(infoPath, WorldFormat.ProtectSave(raw, profileId));
+                WorldFormat.ValidateWorldInfoFile(infoPath, profileId, stage.Info);
+                return stage;
+            }
+            catch
+            {
+                stage.Dispose();
+                throw;
+            }
+        }
+
+        private StagedWorld PrepareCore(string profileId, string owner, string worldName, int seed)
         {
             WorldFormat.ValidateProfileId(profileId);
             owner = (owner ?? "").Trim();
@@ -641,6 +792,16 @@ namespace CMZWorldBuilder
         {
             using (StagedWorld stage = Prepare(profileId, owner, worldName, seed))
             {
+                stage.Commit();
+                return stage.FinalPath;
+            }
+        }
+
+        public string CreateAndCommitOfficialNormal(string profileId, string owner, int seed, out string worldName)
+        {
+            using (StagedWorld stage = PrepareOfficialNormal(profileId, owner, seed))
+            {
+                worldName = stage.WorldName;
                 stage.Commit();
                 return stage.FinalPath;
             }

@@ -8,7 +8,7 @@ namespace CMZWorldBuilder
     public static class WorldBuilderInfo
     {
         public const string Name = "CastleMiner Z World Builder";
-        public const string Version = "1.0.4";
+        public const string Version = "1.1.2";
         public const string SupportedGameVersion = "1.9.9.8";
         public const int WorldInfoVersion = 5;
         public const int TerrainVersion = 1;
@@ -74,7 +74,7 @@ namespace CMZWorldBuilder
                 ? Path.GetFullPath(dataOverride)
                 : Path.Combine(ManagerDataRoot, "ToolData", "cmz.worldbuilder");
 
-            // Standalone v1.0.4 uses the generic ToolData contract. Preserve all
+            // Standalone v1.1.2 continues to use the generic ToolData contract. Preserve all
             // previous World Builder user data by copying without overwrite; never
             // delete or move the previous integrated/legacy data as part of migration.
             // This also runs when --data-root/CMZWB_DATA_ROOT is supplied by the Manager;
@@ -257,10 +257,19 @@ namespace CMZWorldBuilder
         public string generator { get; set; }
         public string optionsFile { get; set; }
         public string documentation { get; set; }
+        public ScenarioWorldGeneration worldGeneration { get; set; }
         public Dictionary<string,string> files { get; set; }
         public string installedRoot { get; set; }
         public bool isBundled { get; set; }
         public override string ToString() { return (name ?? scenarioId) + " " + version; }
+    }
+
+    public sealed class ScenarioWorldGeneration
+    {
+        // "scenario" preserves the legacy custom staging workflow.
+        // "official-cmz" requests an official-equivalent CMZ Normal World foundation
+        // before the scenario generator applies its own changes.
+        public string @base { get; set; }
     }
 
     public sealed class ScenarioOptionsDocument

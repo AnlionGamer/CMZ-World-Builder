@@ -2,6 +2,8 @@
 
 An independent world-creation and inspection utility for the original Steam release of **CastleMiner Z 1.9.9.8**.
 
+> **Unofficial community project:** CastleMiner Z World Builder is independently created and published by AnlionGamer. It is not an official CastleMiner Z release and is not affiliated with, sponsored by, approved by, or endorsed by the game's developers, publisher, or Valve.
+
 **Publisher:** AnlionGamer  
 **Current release:** v1.1.2  
 **Tool ID:** `cmz.worldbuilder`  
@@ -19,7 +21,7 @@ CastleMiner Z World Builder runs as its own utility rather than being compiled i
 - Reports persisted-world data scale, record sizes, coordinate coverage, and the initial persisted chunk-ID payload relevant to multiplayer joining.
 - Keeps multiplayer metrics factual; v1.1.2 does not invent a safe/unsafe threshold.
 - Preserves World Builder ToolData across updates.
-- Supports 23 interface languages and the CMZ official-tool visual design family.
+- Supports 23 interface languages and the CMZ Mod Manager community-tool visual design family.
 
 No custom scenarios are bundled with the World Builder release.
 
@@ -74,7 +76,9 @@ v1.1.2 adds an optional scenario manifest declaration:
 A scenario may choose:
 
 - `scenario` — the existing scenario-owned staging behavior; this remains the default when the declaration is absent.
-- `official-cmz` — stage the validated Normal World foundation first, then let the scenario apply its own changes.
+- `official-cmz` — stage the validated stock-compatible CastleMiner Z Normal World foundation first, then let the scenario apply its own changes.
+
+`official-cmz` is an internal World Builder protocol identifier. It describes the stock-compatible CMZ generation foundation and **does not mean that World Builder, a scenario, or its output is an official CastleMiner Z product or endorsed by the game's rights holders**.
 
 The decision belongs to each scenario package. World Builder remains neutral and contains no scenario-specific world design logic.
 
@@ -109,7 +113,7 @@ When CMZ Mod Manager uses a custom data root, the corresponding `ToolData\cmz.wo
 
 This repository contains the public World Builder source snapshot and supporting documentation for the current release. The private/release **builder is intentionally not included** in this repository.
 
-Reference manifests from published packages are stored under `manifests/`.
+Reference manifests from published packages are stored under `manifests/`. Historical reference manifests are preserved as records of the packages that were actually released and should not be interpreted as the licensing policy for future builds.
 
 ## Release integrity
 
@@ -140,8 +144,16 @@ Windows build and real-game runtime testing remain the final authority. v1.1.2 h
 
 ## License
 
-Original project source is released under the MIT License. CastleMiner Z names, trademarks, and third-party game material remain the property of their respective owners.
+The current repository `main` branch and future World Builder work are distributed under the **AnlionGamer Community Use, Modification, and Noncommercial Distribution License v1.0**. See [`LICENSE`](LICENSE).
+
+The license permits community use, study, modification, free forks, and free redistribution while prohibiting sale, paid access, deceptive rebranding, and deliberately malicious use. Independently created scenarios and extensions remain the property of their own authors unless they incorporate substantial World Builder material.
+
+**Historical license:** World Builder v1.1.2 and earlier copies already published under the MIT License retain the MIT permissions that accompanied those releases. Relicensing the repository going forward does not revoke those historical permissions. See [`LICENSE_HISTORY.md`](LICENSE_HISTORY.md).
+
+Future `.cmztool` release packages should carry the applicable license and project notice inside the package so the terms remain attached when the tool is shared separately from GitHub.
+
+CastleMiner Z names, trademarks, and third-party game material remain the property of their respective owners.
 
 ## Disclaimer
 
-This is a community project and is not an official release from the original CastleMiner Z developers or Valve.
+This is an independent community project and is not an official release from the original CastleMiner Z developers, publisher, or Valve.

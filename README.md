@@ -144,15 +144,15 @@ Windows build and real-game runtime testing remain the final authority. v1.1.2 h
 
 ## License
 
-The current repository `main` branch and future World Builder work are distributed under the **AnlionGamer Community Use, Modification, and Noncommercial Distribution License v1.0**. See [`LICENSE`](LICENSE).
+The current repository `main` branch and future World Builder work are governed by the **AnlionGamer Community Distribution Terms v1.0**. See [`LICENSE`](LICENSE).
 
-The license permits community use, study, modification, free forks, and free redistribution while prohibiting sale, paid access, deceptive rebranding, and deliberately malicious use. Independently created scenarios and extensions remain the property of their own authors unless they incorporate substantial World Builder material.
+The terms allow normal use, source inspection, and private modification. Public redistribution of the original project, source, packaged tool, forks, or modified builds requires **prior permission from AnlionGamer** and must remain **non-commercial**. Sale and paid access are prohibited without separate permission. Independently created scenarios and extensions remain the property of their own authors unless they incorporate substantial World Builder material.
 
 **Historical license:** World Builder v1.1.2 and earlier copies already published under the MIT License retain the MIT permissions that accompanied those releases. Relicensing the repository going forward does not revoke those historical permissions. See [`LICENSE_HISTORY.md`](LICENSE_HISTORY.md).
 
 Future `.cmztool` release packages should carry the applicable license and project notice inside the package so the terms remain attached when the tool is shared separately from GitHub.
 
-CastleMiner Z names, trademarks, and third-party game material remain the property of their respective owners.
+Castle Miner Z names, trademarks, and third-party game material remain the property of their respective owners.
 
 ## Disclaimer
 

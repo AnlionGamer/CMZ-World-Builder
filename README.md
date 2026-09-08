@@ -128,7 +128,7 @@ Development builders, `_build_work`, generated `OUTPUT` directories, and builder
 The SHA-256 for the current release is recorded in `SHA256SUMS.txt`.
 
 ```text
-960DF03D31A64B978B84E930960D3F49F9C56BD86680EA47595B7306899DD22F  CMZ_World_Builder_v1.1.3.cmztool
+F101078EDFA659CEF34957E88C9FDABC53E042B26517A659257C924E27C35447  CMZ_World_Builder_v1.1.3.cmztool
 ```
 
 ## Release validation

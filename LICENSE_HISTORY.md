@@ -1,16 +1,20 @@
 # CastleMiner Z World Builder License History
 
-## Current repository policy
+## Current release policy
 
-The current `main` branch and future CastleMiner Z World Builder work are distributed under the **AnlionGamer Community Use, Modification, and Noncommercial Distribution License v1.0** (`LicenseRef-AnlionGamer-CUMND-1.0`), unless a later release expressly states different terms.
+CastleMiner Z World Builder **v1.1.3** and the current `main` branch are governed by the **AnlionGamer Community Distribution Terms v1.0**. See [`LICENSE`](LICENSE) for the controlling terms.
 
-The current community license permits use, study, modification, free redistribution, and free forks while prohibiting sale or paid access to the World Builder or derivative works containing substantial portions of it. See [`LICENSE`](LICENSE) for the complete terms.
+The current terms allow normal use, source inspection, and private modification. Public redistribution of the original project, source, packaged releases, forks, or modified builds requires prior permission from **AnlionGamer** and must remain non-commercial.
 
 ## Historical MIT releases
 
-World Builder versions that were already published under the MIT License remain available under the MIT terms that accompanied those copies. This relicensing does not revoke permissions previously granted to those versions.
+World Builder versions that were already published under the MIT License retain the permissions that accompanied those copies.
 
-**Historical MIT coverage:** CastleMiner Z World Builder **v1.1.2 and earlier releases published under MIT**.
+**Historical MIT release coverage:** CastleMiner Z World Builder **v1.1.2 and earlier releases published under MIT**.
+
+## Intermediate repository terms
+
+After v1.1.2, some repository commits were published under the earlier **AnlionGamer Community Use, Modification, and Noncommercial Distribution License v1.0**. Copies obtained under those documented terms retain the permissions that accompanied them. Before the v1.1.3 packaged release, the repository moved to the current **AnlionGamer Community Distribution Terms v1.0**.
 
 For clarity, the historical MIT text was:
 

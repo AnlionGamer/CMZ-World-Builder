@@ -1,7 +1,10 @@
 bin/
 obj/
 OUTPUT/
+Builder/
+_build_work/
 *.pdb
 *.user
 *.suo
 *.cmztool
+*_Builder*.zip

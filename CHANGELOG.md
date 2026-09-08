@@ -2,6 +2,16 @@
 
 All notable public changes to CastleMiner Z World Builder are documented here.
 
+## 1.1.3
+
+- Corrected `world.info` parsing for established/populated worlds and custom scenarios.
+- World Inspection now consumes the variable-length crate collection and the version-gated door and spawner collections used by CastleMiner Z 1.9.9.8.
+- Added saved crate, door, and spawner counts to inspection output.
+- Added explicit metadata parse-health reporting so a metadata parser failure is surfaced instead of appearing as a clean inspection.
+- Added regression coverage for populated v5 `world.info` data and legacy v2 metadata.
+- Preserved read-only inspection, Normal World creation behavior, scenario generation behavior, and the existing multiplayer persisted-data measurements.
+- v1.1.3 is the first packaged World Builder release governed by the AnlionGamer Community Distribution Terms v1.0. Historical v1.1.2-and-earlier MIT releases retain their original permissions.
+
 ## 1.1.2
 
 - Added optional scenario-defined `worldGeneration.base` behavior.
@@ -31,7 +41,7 @@ All notable public changes to CastleMiner Z World Builder are documented here.
 ## 1.0.4
 
 - Standardized the standalone World Builder around the official CMZ utility UI design family.
-- Replaced Windows-native button and ComboBox chrome with explicit themed templates.
+- Replaced Windows-native button and ComboBox chrome with explicit themed button templates.
 - Fixed light-on-light dropdown states under dark/material themes.
 - Added readable accent text and themed hover/pressed/focused/disabled states.
 - Preserved the standalone `.cmztool` architecture and separate ToolData storage.

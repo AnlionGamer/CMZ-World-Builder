@@ -1,0 +1,232 @@
+{
+  "toolFormat": 1,
+  "id": "cmz.worldbuilder",
+  "name": "CastleMiner Z World Builder",
+  "version": "1.1.3",
+  "author": "AnlionGamer",
+  "description": "Create CastleMiner Z worlds, generate trusted custom scenarios, and inspect existing worlds with read-only metadata, coverage, and integrity diagnostics.",
+  "gameVersion": "1.9.9.8",
+  "minimumManagerVersion": "1.1.2",
+  "entryExecutable": "CMZ.WorldBuilder.exe",
+  "requiresGameClosed": true,
+  "files": [
+    {
+      "path": "Assets/CMZWorldBuilder.ico",
+      "sha256": "B71DB3C448B573DCC45A7653AD5EBD92D8E2237E1E670BB28635DD8BF5769DEA"
+    },
+    {
+      "path": "CMZ.WorldBuilder.exe",
+      "sha256": "3FDE645022E25553F800D74284EB0416AB99C4F6B8BBC0F85015332D1CA0EC27"
+    },
+    {
+      "path": "Documentation/CHANGELOG_v0.2.1_REFERENCE.txt",
+      "sha256": "046656873BB2A5B176A1C895EFD76643A1F659395D7ED1EE8F51B343063E0A3D"
+    },
+    {
+      "path": "Documentation/CHANGELOG_v1.1.0.txt",
+      "sha256": "86360D6659E525DED3F436C1C1CCF8D20910477258CC8EFC335F7040BA4022A7"
+    },
+    {
+      "path": "Documentation/CHANGELOG_v1.1.1.txt",
+      "sha256": "8A5E5A6F073F83E371E5939A38A6B3569B1C5CDAADB13C9E5184F9704912334E"
+    },
+    {
+      "path": "Documentation/CHANGELOG_v1.1.2.txt",
+      "sha256": "39E43D94DB786D69C17823550CC23A1AD949F39BEDD139046F6CF55FF8845D23"
+    },
+    {
+      "path": "Documentation/CHANGELOG_v1.1.3.txt",
+      "sha256": "E5A2014E3951ECDC4D551FE64CD4B3873E41E41EEE9F9B25C334EBF2D482F2A7"
+    },
+    {
+      "path": "Documentation/HOW_TO_CREATE_CUSTOM_SCENARIOS.txt",
+      "sha256": "5D3A96442C0092A68314F13D157A5F93B1F59095D779DA94C05BDC403C88DDC2"
+    },
+    {
+      "path": "Documentation/OFFICIAL_NORMAL_WORLD_PARITY_v1.1.1.txt",
+      "sha256": "AA67917391B37FBE91A4C3DADE5B39C9899A95BBE0E4ED2666E410414E034069"
+    },
+    {
+      "path": "Documentation/OFFICIAL_WORLD_CREATION_AUDIT.txt",
+      "sha256": "4A43A237A4C91A9F73F066161387E56F1EF392385817F5D07A2B76553FBF3619"
+    },
+    {
+      "path": "Documentation/README_v0.2.1_REFERENCE.txt",
+      "sha256": "C25CD9557993AD70DC71403B01C8585216161CCE00BB681B52703E280EF3F836"
+    },
+    {
+      "path": "Documentation/README_WORLD_BUILDER_SOURCE.txt",
+      "sha256": "5460F87CE39710D4318E1191470359B99F3C3A9687759A2E12E29DEE41A4D40E"
+    },
+    {
+      "path": "Documentation/RUNTIME_TEST_CHECKLIST_v0.2.1_REFERENCE.txt",
+      "sha256": "4071E3E97D45618BD11C22D65C0516DBC9A1DA8C138CD9E7D9443E56716985AD"
+    },
+    {
+      "path": "Documentation/SCENARIO_WORLD_GENERATION_v1.1.2.txt",
+      "sha256": "6D62F27FEAB252728E00EA4BE65926F1B996A51340186AEFFA9968D0705B73F2"
+    },
+    {
+      "path": "Documentation/TECHNICAL_VALIDATION_v0.2.1_REFERENCE.txt",
+      "sha256": "E5F3F0069E8EB3ED64300DDDD71BBBF16239025D30D4C2ABFE24625C2D001050"
+    },
+    {
+      "path": "Documentation/WORLD_INSPECTION_MULTIPLAYER_METRICS_v1.1.2.txt",
+      "sha256": "DCE740012DC65C10B6BBD34C4C290D200A2FE8B9D86139DDC57635D61E4710EB"
+    },
+    {
+      "path": "Languages/cs.json",
+      "sha256": "49B378043E02CA95B90BBFB635F9604B40F82058C169A3A4EF3072B3FDDCBC5A"
+    },
+    {
+      "path": "Languages/da.json",
+      "sha256": "A43B186F20455D77426377B6C5F535044A18B3BEFA634708DF40C58E514DDDCF"
+    },
+    {
+      "path": "Languages/de.json",
+      "sha256": "0C47B37BE0B4FA1BFEFCE74951EC8A7729BE294F1289D97EDC06529B48331E0E"
+    },
+    {
+      "path": "Languages/el.json",
+      "sha256": "780885C673AD6AD800F26AF3E1DC83E8755FDE8BAE76200921C25B43A5B6BA2C"
+    },
+    {
+      "path": "Languages/en-US.json",
+      "sha256": "5008F282131E754A535B2863BC690D0CFCF39F17D3919109975DB82D30236EDF"
+    },
+    {
+      "path": "Languages/es.json",
+      "sha256": "AB43C21C6119F4512419402229463D3566280C6DEBA28C4ACF21CECF618BB88C"
+    },
+    {
+      "path": "Languages/fi.json",
+      "sha256": "C0E852C336EEE1977EDD69F5B5E323AE2E21B77B0D25AA54F11912A494EA6D80"
+    },
+    {
+      "path": "Languages/fr.json",
+      "sha256": "DE502373D16E34368E37A4CB25D26ED07D055310454F1CF7DD92DE94E9229D2F"
+    },
+    {
+      "path": "Languages/hu.json",
+      "sha256": "B857DF3230AA2ACA8CFBA859384A77918FBB8E17DB61D90E288FEDF4C2A0E6F2"
+    },
+    {
+      "path": "Languages/it.json",
+      "sha256": "9819966016399A29EC98A7A145194A9E990755E51368AD780D988EF716BCAE07"
+    },
+    {
+      "path": "Languages/ja.json",
+      "sha256": "4ACBF475F19F82FBA6AFE7C1F4CB697E80F5801F8C585B5776C6019E51C16C7C"
+    },
+    {
+      "path": "Languages/ko.json",
+      "sha256": "A49122C8619D472E5CA97BD720A8FC978608BFEDB8E78C73BD92590E4A52405A"
+    },
+    {
+      "path": "Languages/nb-NO.json",
+      "sha256": "40906CCEA7A9A5CBA4E35E23A545CA1645D27E11F2CDB4DDB91CDC619C5EE659"
+    },
+    {
+      "path": "Languages/nl.json",
+      "sha256": "AE15121CEDBFE1C3F231765B33852CF9155DEE389E5AC24D364022E0D1715199"
+    },
+    {
+      "path": "Languages/pl.json",
+      "sha256": "7395FDD28B83B7F878E5B6D8B584A4B0780EC6CC8F174FA9C9EE31458C711222"
+    },
+    {
+      "path": "Languages/pt-BR.json",
+      "sha256": "21AD8036A7EB625AD62041CBDD7723EEB8637116669093377962956292FAC070"
+    },
+    {
+      "path": "Languages/ro.json",
+      "sha256": "0DFFF67DE254AF11564697816EB7F57999E53E2C3DD94A4F20080A86907D57BF"
+    },
+    {
+      "path": "Languages/ru.json",
+      "sha256": "5CE2F2540E45124B5A6CF201261F35D9108752AF401621AF031C79152FCED6A9"
+    },
+    {
+      "path": "Languages/sv.json",
+      "sha256": "2228E5B4888F73F7D7303F5EE605EBF9B756A99EC5B87878E2B1D23918D676FE"
+    },
+    {
+      "path": "Languages/tr.json",
+      "sha256": "A40F62ED8B533494DA8559E457E88CDC4161EABBDDEFD8B1B6DD6DBE4A9A2490"
+    },
+    {
+      "path": "Languages/uk.json",
+      "sha256": "CFA2A58421B20561F67CD79E7E02A1363985F09CC92C76B8F381D6A44B142606"
+    },
+    {
+      "path": "Languages/zh-Hans.json",
+      "sha256": "CC987AC0962199A2F44B216DDD7B1F19032A5E005A66886097F2894C60659AD4"
+    },
+    {
+      "path": "Languages/zh-Hant.json",
+      "sha256": "CE260BDE8BC8E6B0CFE8B2E220C48BC857A0386FE018DF1D01615FAC64047792"
+    },
+    {
+      "path": "LICENSE.txt",
+      "sha256": "31EBB6898E183FDA0DDF7B41165E107BDC5A55AB9700E8A3560DE632321CDC66"
+    },
+    {
+      "path": "LICENSE_HISTORY.txt",
+      "sha256": "4C2796FF5935FEAE1A7A1D6D385B56ACC6D2321592DA903D1D91444DD664B37F"
+    },
+    {
+      "path": "NOTICE.txt",
+      "sha256": "BA21C24EC5F2183A20D855F7ED39D332DD45E7ADEDB87A3D0A9A6F7B0D598357"
+    },
+    {
+      "path": "README_WORLD_BUILDER.txt",
+      "sha256": "754CB92D0D2B48224F9950EE36C68B870FC2863AE05DC0507B1A3CAA1FC7D570"
+    },
+    {
+      "path": "Themes/bedrock.json",
+      "sha256": "550A592ACD6F34ADDEAF2DA58C660385399350C98C24C7FC46D222477CCE3CB5"
+    },
+    {
+      "path": "Themes/bloodstone.json",
+      "sha256": "264D726E4CC8B9E9134B6A139B45ACC80EC80944BED7F786D61980BA1BBD2BA8"
+    },
+    {
+      "path": "Themes/copper-wall.json",
+      "sha256": "D74E1D0760ABFE1435D942559420E697F6CE48960E98433FDAC3D51D2DDF23BC"
+    },
+    {
+      "path": "Themes/dark.json",
+      "sha256": "5A0CBEE295E32E831161905B7768E517B1D20E1FE0B1C0BCF39CA6A085F93BB7"
+    },
+    {
+      "path": "Themes/diamond-wall.json",
+      "sha256": "A2D68FF140ED7C3530A6D88C7561F4FCDAFA319BC011EBBCE23CFB497BD25081"
+    },
+    {
+      "path": "Themes/gold-wall.json",
+      "sha256": "D3E0407FC59638F604F94BE456F7A8C458C4EBFEDE7BEC087C269AD9C0E1A1FD"
+    },
+    {
+      "path": "Themes/iron-wall.json",
+      "sha256": "1D45C8C750DCE5D4006A289E70BB3AA3B1554F4070DB0F2EB92397D302508611"
+    },
+    {
+      "path": "Themes/light.json",
+      "sha256": "555EB8AD59DD39C58EECC8F65420FA4DDB25B4A33C61DED7F3D147CC77C3E2C0"
+    },
+    {
+      "path": "Themes/space-rock-space-goo.json",
+      "sha256": "DB9EF981369B9DB0A4257BAF02D27E08C3B8838848A47FBC8F11AD84001B14CE"
+    },
+    {
+      "path": "Themes/system.json",
+      "sha256": "A4C100E67BD7157B157E29FABF38093D11D24A211FC8D46B623CD0A9F13EA6C9"
+    }
+  ],
+  "homepage": "https://github.com/AnlionGamer/CMZ-World-Builder",
+  "source": "https://github.com/AnlionGamer/CMZ-World-Builder",
+  "license": "AnlionGamer Community Distribution Terms v1.0",
+  "releaseNotes": "v1.1.3 corrects World Inspection metadata parsing for populated world.info files by consuming the versioned crate, door, and spawner collections used by CastleMiner Z 1.9.9.8. It also reports saved-object counts and metadata parse health while preserving the validated Normal World and scenario-generation behavior from prior releases.",
+  "publisher": "AnlionGamer",
+  "configSchema": []
+}

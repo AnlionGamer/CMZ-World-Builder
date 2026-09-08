@@ -4,11 +4,11 @@
 
 **CastleMiner Z World Builder** is independently created and published by **AnlionGamer** as a community utility for CastleMiner Z.
 
-The current repository `main` branch and future World Builder work are distributed under the **AnlionGamer Community Use, Modification, and Noncommercial Distribution License v1.0**. See `LICENSE` for the controlling terms.
+The current repository `main` branch and future World Builder work are governed by the **AnlionGamer Community Distribution Terms v1.0**. See `LICENSE` for the controlling terms.
+
+Public redistribution of project material or modified versions governed by the current terms requires prior permission from **AnlionGamer** and must remain non-commercial. Any permitted redistribution must preserve the applicable license, this project notice, reasonable attribution, and clear identification of modifications.
 
 World Builder v1.1.2 and earlier copies already published under the MIT License retain the permissions granted to those historical copies. See `LICENSE_HISTORY.md` for the license transition record.
-
-When redistributing a version governed by the current community license, preserve the license, this project notice, reasonable credit to **AnlionGamer** as the original creator/publisher, and clear identification of modified or forked versions.
 
 ## CastleMiner Z
 
@@ -26,4 +26,4 @@ World Builder is an independently distributed `.cmztool` utility designed for th
 
 ## Distribution identity
 
-Only World Builder releases published by AnlionGamer through an expressly designated project distribution location should be represented as original AnlionGamer releases. Forks and modified builds must be clearly identified as modified and must not imply endorsement that has not been granted.
+Only World Builder releases published by AnlionGamer through an expressly designated project distribution location should be represented as original AnlionGamer releases. Modified or redistributed builds must not imply approval or endorsement that has not been granted.

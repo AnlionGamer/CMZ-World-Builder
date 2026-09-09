@@ -57,10 +57,6 @@ No Custom Scenarios are bundled with World Builder.
 
 ## Validation status
 
-The release artifact passed package integrity, manifest/hash, path hygiene, localization parity, JSON resource, compiled version-identity, privacy/reporting, and source-level scenario-package safety checks. The Windows builder completed successfully, and the resulting v1.1.2 tool has been exercised in CastleMiner Z 1.9.9.8.
+The release artifact passed package integrity, manifest integrity, path hygiene, localization parity, JSON resource, compiled version-identity, privacy/reporting, and source-level scenario-package safety checks. The Windows builder completed successfully, and the resulting v1.1.2 tool has been exercised in CastleMiner Z 1.9.9.8.
 
 Same-seed Normal World runtime comparisons have matched surface terrain, trees, cave topology, and ore placement in tested areas. This is evidence for the tested regions rather than a claim of exhaustive block-for-block comparison of the entire world.
-
-## Release integrity
-
-GitHub automatically publishes the SHA-256 digest of the uploaded release asset. The digest displayed by GitHub for the release asset is the authoritative public checksum for that file.

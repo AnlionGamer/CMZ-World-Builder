@@ -37,11 +37,9 @@ World Builder is not a runtime gameplay mod and does not use Harmony or the CMZ 
 5. Choose the downloaded `.cmztool`.
 6. Open CastleMiner Z World Builder from the Tools page.
 
-## Integrity
+## Release integrity
 
-SHA-256:
-
-`BE8A64D80EB64C32E94E65E512EC701F5CFE1AB8217F91F04F8F0434B488353E`
+GitHub automatically publishes the SHA-256 digest of the uploaded release asset. The digest displayed by GitHub for the release asset is the authoritative public checksum for that file.
 
 The release artifact was audited for package structure, declared payload integrity, path safety, duplicate entries, compiled version identity, theme JSON validity, and localization parity before publication.
 

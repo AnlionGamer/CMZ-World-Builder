@@ -61,8 +61,6 @@ The release artifact passed package integrity, manifest/hash, path hygiene, loca
 
 Same-seed Normal World runtime comparisons have matched surface terrain, trees, cave topology, and ore placement in tested areas. This is evidence for the tested regions rather than a claim of exhaustive block-for-block comparison of the entire world.
 
-## SHA-256
+## Release integrity
 
-```text
-4529E7C4EE14EE473143E5A8963D648854B4DBF19484F06BFA442F2171365829  CMZ_World_Builder_v1.1.2.cmztool
-```
+GitHub automatically publishes the SHA-256 digest of the uploaded release asset. The digest displayed by GitHub for the release asset is the authoritative public checksum for that file.

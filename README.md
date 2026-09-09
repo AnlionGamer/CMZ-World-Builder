@@ -123,18 +123,12 @@ Reference manifests from published packages are stored under `manifests/`. Histo
 
 Development builders, `_build_work`, generated `OUTPUT` directories, and builder ZIPs are not public repository artifacts.
 
-## Release integrity
-
-GitHub automatically publishes a SHA-256 digest for each uploaded release asset. The digest shown by GitHub for the asset on the **Releases** page is the authoritative public checksum for that uploaded file.
-
-This repository does not separately publish a manual release-file checksum. SHA-256 values inside package manifests remain part of the package integrity system and are not alternate public release checksums.
-
 ## Release validation
 
 The v1.1.3 artifact has been checked for:
 
 - package ZIP integrity;
-- manifest/file SHA-256 agreement and no undeclared payload files;
+- manifest/file integrity agreement and no undeclared payload files;
 - path traversal hygiene;
 - expected tool/game/manager version identity;
 - inclusion of the current release license, project notice, and license history;
@@ -144,7 +138,7 @@ The v1.1.3 artifact has been checked for:
 - no bundled custom scenarios;
 - no hard-coded local user paths found in the compiled executable;
 - source-level absence of network/web client code;
-- scenario package path/hash validation and transactional staging behavior;
+- scenario package path/integrity validation and transactional staging behavior;
 - privacy-safe World Inspection report behavior;
 - populated v5 and legacy v2 `world.info` parser regression coverage.
 

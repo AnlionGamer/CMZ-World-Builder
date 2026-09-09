@@ -125,11 +125,9 @@ Development builders, `_build_work`, generated `OUTPUT` directories, and builder
 
 ## Release integrity
 
-The SHA-256 for the current release is recorded in `SHA256SUMS.txt`.
+GitHub automatically publishes a SHA-256 digest for each uploaded release asset. The digest shown by GitHub for the asset on the **Releases** page is the authoritative public checksum for that uploaded file.
 
-```text
-F101078EDFA659CEF34957E88C9FDABC53E042B26517A659257C924E27C35447  CMZ_World_Builder_v1.1.3.cmztool
-```
+This repository does not separately publish a manual release-file checksum. SHA-256 values inside package manifests remain part of the package integrity system and are not alternate public release checksums.
 
 ## Release validation
 

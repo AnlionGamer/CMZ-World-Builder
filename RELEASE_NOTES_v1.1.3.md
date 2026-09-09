@@ -38,8 +38,6 @@ The v1.1.3 builder completed successfully on Windows. The resulting tool was exe
 
 World Builder v1.1.3 is governed by the **AnlionGamer Community Distribution Terms v1.0**. World Builder v1.1.2 and earlier copies already published under MIT retain the permissions that accompanied those historical releases.
 
-## SHA-256
+## Release integrity
 
-```text
-F101078EDFA659CEF34957E88C9FDABC53E042B26517A659257C924E27C35447  CMZ_World_Builder_v1.1.3.cmztool
-```
+GitHub automatically publishes the SHA-256 digest of the uploaded release asset. The digest displayed by GitHub for `CMZ_World_Builder_v1.1.3.cmztool` is the authoritative public checksum for that file.

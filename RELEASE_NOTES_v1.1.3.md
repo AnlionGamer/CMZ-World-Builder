@@ -32,12 +32,8 @@ World Inspection also reports the saved crate, door, and spawner counts and expo
 
 ## Validation
 
-The v1.1.3 builder completed successfully on Windows. The resulting tool was exercised against the previously failing populated custom-scenario world, and World Inspection parsed it successfully. Package integrity, manifest payload hashes, release identity, and legal-file inclusion were also audited before publication.
+The v1.1.3 builder completed successfully on Windows. The resulting tool was exercised against the previously failing populated custom-scenario world, and World Inspection parsed it successfully. Package integrity, manifest payload integrity, release identity, and legal-file inclusion were also audited before publication.
 
 ## License
 
 World Builder v1.1.3 is governed by the **AnlionGamer Community Distribution Terms v1.0**. World Builder v1.1.2 and earlier copies already published under MIT retain the permissions that accompanied those historical releases.
-
-## Release integrity
-
-GitHub automatically publishes the SHA-256 digest of the uploaded release asset. The digest displayed by GitHub for `CMZ_World_Builder_v1.1.3.cmztool` is the authoritative public checksum for that file.
